@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2299">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco; color: #ffffff; -webkit-text-stroke: #ffffff; background-color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco; color: #ffffff; -webkit-text-stroke: #ffffff; background-color: #000000; min-height: 19.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco; color: #ffffff; color: rgba(255, 255, 255, 0.5); -webkit-text-stroke: rgba(255, 255, 255, 0.5); background-color: #000000}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco; color: #14986a; -webkit-text-stroke: #14986a; background-color: #000000}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Monaco; color: #2781c9; -webkit-text-stroke: #2781c9; background-color: #000000}
+    span.s1 {font-kerning: none; color: #2781c9; -webkit-text-stroke: 0px #2781c9}
+    span.s2 {font-kerning: none}
+    span.s3 {font-kerning: none; color: #ffffff; -webkit-text-stroke: 0px #ffffff}
+    span.s4 {font-kerning: none; color: #e2830e; -webkit-text-stroke: 0px #e2830e}
+    span.s5 {font-kerning: none; color: #14986a; -webkit-text-stroke: 0px #14986a}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">import</span><span class="s2"> pandas </span><span class="s1">as</span><span class="s2"> pd</span></p>
+<p class="p1"><span class="s1">from</span><span class="s2"> sklearn.linear_model </span><span class="s1">import</span><span class="s2"> LinearRegression</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p3"><span class="s2"># Carga los datos del archivo CSV</span></p>
+<p class="p4"><span class="s3">data = pd.read_csv(</span><span class="s2">‘Edgarcore/regresiones/seriesgithub.csv'</span><span class="s3">)</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p3"><span class="s2"># Imprime las columnas disponibles en el archivo CSV</span></p>
+<p class="p4"><span class="s4">print</span><span class="s3">(</span><span class="s2">'Columnas disponibles:'</span><span class="s3">)</span></p>
+<p class="p1"><span class="s4">print</span><span class="s2">(data.columns)</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p3"><span class="s2"># Solicita al usuario que ingrese la variable dependiente</span></p>
+<p class="p4"><span class="s3">variable_dependiente = </span><span class="s4">input</span><span class="s3">(</span><span class="s2">'Ingrese el nombre de la variable dependiente: '</span><span class="s3">)</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p3"><span class="s2"># Solicita al usuario que ingrese las variables independientes</span></p>
+<p class="p4"><span class="s3">variables_independientes = </span><span class="s4">input</span><span class="s3">(</span><span class="s2">'Ingrese los nombres de las variables independientes separadas por coma: '</span><span class="s3">)</span></p>
+<p class="p1"><span class="s2">variables_independientes = [var.strip() </span><span class="s1">for</span><span class="s2"> var </span><span class="s1">in</span><span class="s2"> variables_independientes.split(</span><span class="s5">','</span><span class="s2">)]</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p3"><span class="s2"># Verifica que las variables ingresadas sean válidas</span></p>
+<p class="p1"><span class="s1">if</span><span class="s2"> variable_dependiente </span><span class="s1">not</span><span class="s2"> </span><span class="s1">in</span><span class="s2"> data.columns </span><span class="s1">or</span><span class="s2"> </span><span class="s4">any</span><span class="s2">(var </span><span class="s1">not</span><span class="s2"> </span><span class="s1">in</span><span class="s2"> data.columns </span><span class="s1">for</span><span class="s2"> var </span><span class="s1">in</span><span class="s2"> variables_independientes):</span></p>
+<p class="p4"><span class="s3"><span class="Apple-converted-space">    </span></span><span class="s4">print</span><span class="s3">(</span><span class="s2">'Error: una o más variables ingresadas no existen en el archivo CSV.'</span><span class="s3">)</span></p>
+<p class="p5"><span class="s2">else</span><span class="s3">:</span></p>
+<p class="p3"><span class="s3"><span class="Apple-converted-space">    </span></span><span class="s2"># Solicita al usuario que ingrese el periodo de tiempo</span></p>
+<p class="p4"><span class="s3"><span class="Apple-converted-space">    </span>periodo_inicio = </span><span class="s4">input</span><span class="s3">(</span><span class="s2">'Ingrese el periodo de inicio (YYYY-Q): '</span><span class="s3">)</span></p>
+<p class="p4"><span class="s3"><span class="Apple-converted-space">    </span>periodo_fin = </span><span class="s4">input</span><span class="s3">(</span><span class="s2">'Ingrese el periodo de fin (YYYY-Q): '</span><span class="s3">)</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p3"><span class="s3"><span class="Apple-converted-space">    </span></span><span class="s2"># Filtra los datos según el periodo de tiempo ingresado</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>filtro_periodo = (data[</span><span class="s5">'periodo'</span><span class="s2">] &gt;= periodo_inicio) &amp; (data[</span><span class="s5">'periodo'</span><span class="s2">] &lt;= periodo_fin)</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>data_filtrada = data.loc[filtro_periodo]</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p3"><span class="s3"><span class="Apple-converted-space">    </span></span><span class="s2"># Define las variables independientes (X) y la variable dependiente (y)</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>X = data_filtrada[variables_independientes]</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>y = data_filtrada[variable_dependiente]</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p3"><span class="s3"><span class="Apple-converted-space">    </span></span><span class="s2"># Crea una instancia del modelo de regresión lineal</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>regression_model = LinearRegression()</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p3"><span class="s3"><span class="Apple-converted-space">    </span></span><span class="s2"># Ajusta el modelo utilizando los datos</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>regression_model.fit(X, y)</span></p>
+<p class="p2"><span class="s2"></span><br></p>
+<p class="p3"><span class="s3"><span class="Apple-converted-space">    </span></span><span class="s2"># Imprime los coeficientes y el término independiente</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s4">print</span><span class="s2">(</span><span class="s5">'Coeficientes:'</span><span class="s2">, regression_model.coef_)</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s4">print</span><span class="s2">(</span><span class="s5">'Término independiente:'</span><span class="s2">, regression_model.intercept_)</span></p>
+</body>
+</html>
